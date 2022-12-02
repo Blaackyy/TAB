@@ -6,7 +6,7 @@ plugins {
 
 indra {
     javaVersions {
-        target(8)
+        target(17)
     }
     github("NEZNAMY", "TAB") {
         ci(true)

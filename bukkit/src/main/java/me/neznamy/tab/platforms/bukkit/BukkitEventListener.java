@@ -1,6 +1,8 @@
 package me.neznamy.tab.platforms.bukkit;
 
 import me.neznamy.tab.api.TabAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -37,6 +39,7 @@ public class BukkitEventListener implements Listener {
     public void onQuit(PlayerQuitEvent e){
         if (TabAPI.getInstance().isPluginDisabled()) return;
         TabAPI.getInstance().getThreadManager().runTask(() -> TabAPI.getInstance().getFeatureManager().onQuit(TabAPI.getInstance().getPlayer(e.getPlayer().getUniqueId())));
+        Bukkit.getMultiPaperNotificationManager().notify("TAB:quit", e.getPlayer().getUniqueId().toString());
     }
     
     /**
@@ -48,8 +51,13 @@ public class BukkitEventListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onJoin(PlayerJoinEvent e) {
         if (TabAPI.getInstance().isPluginDisabled()) return;
+        Player player = e.getPlayer();
+        int protocol = platform.getProtocolVersion(player);
+
         TabAPI.getInstance().getThreadManager().runTask(() ->
-                TabAPI.getInstance().getFeatureManager().onJoin(new BukkitTabPlayer(e.getPlayer(), platform.getProtocolVersion(e.getPlayer()))));
+                TabAPI.getInstance().getFeatureManager().onJoin(new BukkitTabPlayer(player, protocol)));
+
+        Bukkit.getMultiPaperNotificationManager().notify("TAB:join", player.getUniqueId() + ":" + protocol);
     }
 
     /**

@@ -100,8 +100,7 @@ public class BukkitPlaceholderRegistry extends UniversalPlaceholderRegistry {
         }
         Plugin essentials = Bukkit.getPluginManager().getPlugin(TabConstants.Plugin.ESSENTIALS);
         manager.registerPlayerPlaceholder(TabConstants.Placeholder.AFK, 500, p -> {
-            if (essentials != null && ((Essentials)essentials).getUser(p.getUniqueId()).isAfk()) return true;
-            return purpurIsAfk != null && ((Player)p.getPlayer()).isAfk();
+            return essentials != null && ((Essentials) essentials).getUser(p.getUniqueId()).isAfk();
         });
         if (essentials != null) {
             PlayerPlaceholder nick = manager.registerPlayerPlaceholder(TabConstants.Placeholder.ESSENTIALS_NICK, -1, p -> {

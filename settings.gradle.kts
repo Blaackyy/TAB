@@ -14,6 +14,7 @@ dependencyResolutionManagement {
         maven("https://repo.opencollab.dev/maven-snapshots/") // Floodgate
         maven("https://repo.purpurmc.org/snapshots") // Purpur, Vault
         maven("https://repo.papermc.io/repository/maven-public/") // Velocity
+        maven ("https://repo.clojars.org/") //MultiPaper
     }
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 }
@@ -31,7 +32,7 @@ rootProject.name = "TAB"
 include(":api")
 include(":shared")
 //include(":krypton")
-include(":velocity")
+//include(":velocity")
 include(":bukkit")
-include(":bungeecord")
+//include(":bungeecord")
 include(":jar")

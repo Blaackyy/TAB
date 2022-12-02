@@ -51,6 +51,23 @@ public class Main extends JavaPlugin {
         TABCommand command = new TABCommand();
         cmd.setExecutor(command);
         cmd.setTabCompleter(command);
+
+        // Multipaper listeners
+        Bukkit.getMultiPaperNotificationManager().onString(this, "TAB:join", (data) -> {
+            if (TabAPI.getInstance().isPluginDisabled()) return;
+            TabAPI.getInstance().getThreadManager().runTask(
+                    () -> TabAPI.getInstance().getFeatureManager().onQuit(TabAPI.getInstance().getPlayer(data)));
+        });
+
+        Bukkit.getMultiPaperNotificationManager().onString(this, "TAB:join", (data) -> {
+            if (TabAPI.getInstance().isPluginDisabled()) return;
+
+            Player player = Bukkit.getPlayer(data.split(":")[0]);
+            int protocol = Integer.parseInt(data.split(":")[1]);
+
+            TabAPI.getInstance().getThreadManager().runTask(() ->
+                    TabAPI.getInstance().getFeatureManager().onJoin(new BukkitTabPlayer(player, protocol)));
+        });
     }
 
     @Override

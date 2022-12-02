@@ -20,6 +20,7 @@ event = "3.0.0"
 
 # Platforms
 bukkit = "1.16.5-R0.1-SNAPSHOT"
+multipaper = "1.19.2-R0.1-SNAPSHOT"
 bungeecord = "1.19-R0.1-SNAPSHOT"
 krypton = "0.59.2"
 velocity = "3.1.2-SNAPSHOT"
@@ -60,6 +61,7 @@ event = { group = "net.kyori", name = "event-method", version.ref = "event" }
 
 # Platforms
 bukkit = { group = "org.purpurmc.purpur", name = "purpur-api", version.ref = "bukkit" }
+multipaper = { group = "com.github.puregero", name = "multipaper-api", version.ref = "multipaper" }
 bungeecord = { group = "net.md-5", name = "bungeecord-proxy", version.ref = "bungeecord" }
 krypton-api = { group = "org.kryptonmc", name = "krypton-api", version.ref = "krypton" }
 krypton-server = { group = "org.kryptonmc", name = "krypton-server", version.ref = "krypton" }
